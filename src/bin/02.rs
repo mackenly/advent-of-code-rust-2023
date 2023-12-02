@@ -25,7 +25,7 @@ pub fn part_one(input: &str) -> Option<u32> {
         // trim the second part
         let second_part: &str = split.next()?.trim();
 
-        // split the second part on simicolons
+        // split the second part on semicolons
         let sets = second_part.split("; ");
 
         // for each set
@@ -109,7 +109,7 @@ pub fn part_two(input: &str) -> Option<u32> {
         // trim the second part
         let second_part: &str = split.next()?.trim();
 
-        // split the second part on simicolons
+        // split the second part on semicolons
         let sets = second_part.split("; ");
 
         // for each set
@@ -135,7 +135,7 @@ pub fn part_two(input: &str) -> Option<u32> {
     }
 
     // find the valid game ids
-    for (game_id, line_data) in data {
+    for (_game_id, line_data) in data {
         // count the colors in each set
         let mut max_red = 0;
         let mut max_blue = 0;
