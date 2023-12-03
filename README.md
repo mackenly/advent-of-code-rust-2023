@@ -1,6 +1,7 @@
 <img src="./.assets/christmas_ferris.png" width="164">
 
 # 🎄 Advent of Code 2023
+[![Tests](https://github.com/mackenly/advent-of-code-rust-2023/actions/workflows/ci.yml/badge.svg)](https://github.com/mackenly/advent-of-code-rust-2023/actions/workflows/ci.yml)
 
 Solutions for [Advent of Code](https://adventofcode.com/) in [Rust](https://www.rust-lang.org/).
 
