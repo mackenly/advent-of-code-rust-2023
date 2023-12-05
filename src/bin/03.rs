@@ -37,7 +37,7 @@ pub fn part_one(input: &str) -> Option<u32> {
     // loop over each seen number
     for (i, j) in seen {
         // if the number is not surrounded by symbols
-        if search_around_number(&lines, i, j, true)? {
+        if search_around_number(&lines, i, j)? {
             // get the full number
             let number: String = get_full_number(&lines, i, j)?.to_string();
             sum += number.parse::<u32>().unwrap();
@@ -51,75 +51,75 @@ pub fn part_one(input: &str) -> Option<u32> {
  * Searches around a number to see if it is surrounded by symbols
  * Used for part one
  */
-fn search_around_number(lines: &Vec<Vec<char>>, i: usize, j: usize, original: bool) -> Option<bool> {
-    let mut found: bool = false;
-
+fn search_around_number(lines: &Vec<Vec<char>>, i: usize, j: usize) -> Option<bool> {
     // check right
     if j < lines[i].len() - 1 {
         if is_symbol(lines[i][j + 1]) {
-            found = true;
+            return Some(true);
         }
 
         // if the next character is a number recurse
         if lines[i][j + 1].is_ascii_digit() {
-            found = search_around_number(lines, i, j + 1, false)?;
+            if search_around_number(lines, i, j + 1)? {
+                return Some(true);
+            }
         }
     }
 
     // check top right
     if i > 0 && j < lines[i].len() - 1 {
         if is_symbol(lines[i - 1][j + 1]) {
-            found = true;
+            return Some(true);
         }
     }
 
     // check bottom right
     if i < lines.len() - 1 && j < lines[i].len() - 1 {
         if is_symbol(lines[i + 1][j + 1]) {
-            found = true;
+            return Some(true);
         }
     }
 
-    if !original {
-        return Some(found);
-    }
+    /*if !original {
+        return Some(false);
+    }*/
 
     // check above
     if i > 0 {
         if is_symbol(lines[i - 1][j]) {
-            found = true;
+            return Some(true);
         }
     }
 
     // check below
     if i < lines.len() - 1 {
         if is_symbol(lines[i + 1][j]) {
-            found = true;
+            return Some(true);
         }
     }
 
     // check top left
     if i > 0 && j > 0 {
         if is_symbol(lines[i - 1][j - 1]) {
-            found = true;
+            return Some(true);
         }
     }
 
     // check left
     if j > 0 {
         if is_symbol(lines[i][j - 1]) {
-            found = true;
+            return Some(true);
         }
     }
 
     // check bottom left
     if i < lines.len() - 1 && j > 0 {
         if is_symbol(lines[i + 1][j - 1]) {
-            found = true;
+            return Some(true);
         }
     }
 
-    Some(found)
+    Some(false)
 }
 
 /**
